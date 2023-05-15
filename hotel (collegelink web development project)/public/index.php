@@ -1,14 +1,14 @@
 <?php
-  require_once __DIR__.'\..\boot\boot.php';
+  require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'boot' . DIRECTORY_SEPARATOR . 'boot.php';
   use Hotel\Room;
   use Hotel\User;
   use Hotel\RoomType;
 
   $room = new Room();
-  $cities = $room->getCities();
+  $cities = [];
 
   $type = new RoomType();
-  $allTypes = $type->getAllTypes();
+  $allTypes = [];
 
 ?>
 <!DOCTYPE>

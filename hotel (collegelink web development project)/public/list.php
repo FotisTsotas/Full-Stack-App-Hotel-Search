@@ -2,7 +2,7 @@
 
 <!-- THIS CODE IS NOT USED IN THIS VERSION OF THE PROJECT. ITS WAS USED FOR VERSION 3.0 BUT NOT FOR VERSION 3.2
 <?php
-require_once __DIR__.'\..\boot\boot.php';
+  require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'boot' . DIRECTORY_SEPARATOR . 'boot.php';
 
 use Hotel\Room;
 use Hotel\User;

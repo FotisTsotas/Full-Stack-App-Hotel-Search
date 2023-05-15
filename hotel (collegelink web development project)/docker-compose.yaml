@@ -1,0 +1,61 @@
+version: '3.7'
+services: 
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: 'templateapp'
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www/html
+  mysql:
+    image: mariadb
+    restart: unless-stopped
+    tty: true
+    logging:
+      options:
+        max-file: "5"
+        max-size: "100m"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: hotel
+      MYSQL_USER: hotel
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      SERVICE_TAGS:
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker/logs/mysql:/var/log/mysql
+      - ./storage/mysql:/var/lib/mysql
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    logging:
+      options:
+        max-file: "5"
+        max-size: "100m"
+    environment:
+      PMA_ARBITRARY: 1
+      MYSQL_USER: hotel
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      UPLOAD_LIMIT: 500M
+    volumes:
+      - ./docker/phpmyadmin/uploads/uploads.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+      - ./docker/phpmyadmin/conf/conf.d:/var/www/html/config.inc.php
+    ports:
+      - "9000:80" 
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    command: redis-server --requirepass redis
+    logging:
+      options:
+        max-file: "5"
+        max-size: "100m"
+    volumes:
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf

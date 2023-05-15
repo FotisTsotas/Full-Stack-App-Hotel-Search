@@ -1,11 +1,12 @@
 <?php
 
 // error_reporting(E_ERROR);
-spl_autoload_register(function($class){
-  require_once sprintf(__DIR__.'\..\app\%s.php',$class);
+spl_autoload_register(function ($class) {  
+  require_once sprintf(__DIR__ . '/../app/%s.php', str_replace('\\', '/', $class));
 });
 
-use Hotel\user;
+
+use Hotel\User;
 
 $user = new User();
 

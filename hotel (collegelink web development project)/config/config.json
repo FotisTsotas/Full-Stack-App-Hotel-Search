@@ -1,6 +1,6 @@
 {
   "database": {
-    "host": "127.0.0.1",
+    "host": "mysql:3306",
     "dbname": "hotel",
     "username": "hotel",
     "password": "password"

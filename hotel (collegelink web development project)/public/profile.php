@@ -1,5 +1,5 @@
 <?php
-  require_once __DIR__.'\..\boot\boot.php';
+  require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'boot' . DIRECTORY_SEPARATOR . 'boot.php';
 
   use Hotel\User;
   use Hotel\Favorite;
